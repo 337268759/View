@@ -1,5 +1,7 @@
 <?php
 
+namespace view;
+
 use view\build\Base;
 
 

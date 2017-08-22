@@ -21,6 +21,8 @@ class Base
 
     public function compile($text = '')
     {
+        var_dump($this);
+        die();
         foreach ($this->label as $key => $value) {
             if (preg_match("/{cms\:" . $key . "\s?([a-zA-Z=\"\'\s]*)?}.*{\/cms\:" . $key . "}/", $text, $arrs)) {
                 $value[ 'field' ] = explode(',', $value[ 'field' ]);
