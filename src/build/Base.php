@@ -26,13 +26,13 @@ class Base
     public function compile($text = '')
     {
     	if(empty($text)) $text = $this->html;
-		die($text);
+		
         foreach ($this->label as $key => $value) {
-        	$preg = "/{cms\:" . $key . "\s?([a-zA-Z=\"\'\s]*)?}.*{\/cms\:" . $key . "}/";
+        	$preg = "/{cms\:" . $key . "\s?([0-9a-zA-Z=\"\'\s]*)?}.*{\/cms\:" . $key . "}/";
             if (preg_match($preg, $text, $arrs)) {
                 $value[ 'field' ] = explode(',', $value[ 'field' ]);
                 foreach ($value[ 'field' ] as $field) {
-        			$preg = "/" . $field . "=[\'|\"]([a-zA-Z]*)?[\'|\"]/";
+        			$preg = "/" . $field . "=[\'|\"]([0-9a-zA-Z]*)?[\'|\"]/";
                     if (preg_match($preg, $arrs[ 1 ], $arr)) {
                         $value[ 'args' ][ $field ] = $arr[ 1 ];
                     }
@@ -48,29 +48,24 @@ class Base
     protected function getFunc()
     {
     	foreach($this->analyze as $item) {
-    		
+			print_r($item);
     	}
+		die();
     }
 	
 	public function display($filename='') {
 		$file =  $filename;
-		die($file);
 		if(is_file($file)) {
 			$this->html = file_get_contents($file);
 			$this->compile($this->html);
 		} else {
 			die("模板文件不存在！");
 		}
-		return $this->html;
+		echo $this->html;
 	}
 
     protected function _dj($args)
     {
     	
     }
-	
-	protected __destruct() {
-		$html = $this->html;
-		return $html;
-	}
 }
