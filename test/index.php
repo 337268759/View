@@ -4,8 +4,7 @@ use view\View;
 
 include_once "../vendor/autoload.php";
 
-$html = "abcd{cms:xxx name=\"Jun\" key='index'}{/cms:dj}";
-$html .= "abcd{cms:aaa name=\"Jun\" key='index'}{/cms:novel}";
+echo "<pre>";
 
-View::add_tpl_hook('xxx', ['field' => 'name,key,value']);
-View::compile($html);
+View::add_tpl_hook('aaa', ['field' => 'name,key,value','func' => 'this._dj']);
+View::display(__DIR__ . '/html/test.html');

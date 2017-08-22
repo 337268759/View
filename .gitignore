@@ -4,3 +4,4 @@
 composer.lock
 view/
 storage/
+.project
