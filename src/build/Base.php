@@ -8,6 +8,7 @@ class Base
 
     protected $html = '';
     protected $newHtml = '';
+    protected $vals = [];
 
     protected $label = [
         'foreach' => 'this._foreach',
@@ -87,7 +88,7 @@ class Base
         return $this->newHtml = str_replace($data[ 'oldhtml' ], $newhtml, $this->newHtml);
     }
 
-    public function display($filename = '')
+    public function display($filename = '', $vals = [])
     {
         $file = $filename;
         if (is_file($file)) {
@@ -96,7 +97,11 @@ class Base
         } else {
             die("模板文件不存在！");
         }
-        return $this->newHtml;
+        if (! empty($vals)) {
+            self::assign($vals);
+        }
+
+        echo $this->newHtml;
     }
 
     protected function _dj($args)
@@ -106,5 +111,20 @@ class Base
             ['name' => 'Jun', 'age' => 18, 'sex' => '男'],
             ['name' => '小花', 'age' => 16, 'sex' => '女'],
         ];
+    }
+
+    public function assign($val = '', $value = '')
+    {
+        if (empty($val)) {
+            return false;
+        }
+
+        if (is_array($val)) {
+            foreach ($val as $k => $item) {
+                $this->vals[ $k ] = $item;
+            }
+        } else {
+            $this->vals[ $val ] = $this->vals;
+        }
     }
 }
