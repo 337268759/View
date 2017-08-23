@@ -4,5 +4,20 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-	<body>{cms:ren name="Jun" sex="1" age="18"}{/cms:ren}</body>
+	<body>
+	<table>
+		<tr>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>性别</th>
+		</tr>
+		{cms:ren}
+		<tr>
+			<td>[ren.name]</td>
+			<td>[ren.age]</td>
+			<td>[ren.sex]</td>
+		</tr>
+		{/cms:ren}
+	</table>
+	</body>
 </html>
