@@ -8,3 +8,13 @@
 function V($filename = '') {
     return $filename;
 }
+
+function P($val = '') {
+    echo "<pre>";
+    if (is_array($val) || is_object($val)) {
+        print_r($val);
+    } else {
+        var_dump($val);
+    }
+    die("</pre>");
+}
